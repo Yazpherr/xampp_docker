@@ -7,4 +7,6 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # 2. (Opcional) habilitar mod_rewrite si lo necesitas
-RUN a2enmod rewrite
+RUN a2enmod rewrite \
+    && sed -ri 's#/var/www/html#/var/www/html/public#g' \
+    /etc/apache2/sites-available/000-default.conf
