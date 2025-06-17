@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./xampp:/var/www/html      # Tu código PHP
+    ports:
+      - '${WEB_PORT}:80'                # http://localhost:${WEB_PORT}
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: app
+      DB_USER: user
+      DB_PASS: pass
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    ports:
+      - '3307:3306'
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_USER: user
+      PMA_PASSWORD: pass
+    ports:
+      - '${PHPMYADMIN_PORT}:80'                # http://localhost:${PHPMYADMIN_PORT}
