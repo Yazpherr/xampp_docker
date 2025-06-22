@@ -36,7 +36,7 @@
             <!-- Columna derecha: imagen -->
             <div class="col-md-6 d-none d-md-flex justify-content-center">
                 <img
-                    src="assets/images/welcome.jpg"
+                    src="assets/images/maguito-explosivo.jpg"
                     alt="Bienvenida"
                     class="img-fluid rounded">
             </div>
